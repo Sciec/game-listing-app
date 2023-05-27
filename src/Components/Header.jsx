@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { HiOutlineSearch, HiSun, HiMoon } from "react-icons/hi";
+import { ThemeContext } from '../Context/ThemeContext';
 
 const logo = `
 
@@ -39,6 +40,11 @@ const logo = `
 const Header = () => {
 
   const [toggle, setToggle] = useState(false);
+  const {theme, setTheme} = useContext(ThemeContext);
+
+  useEffect(() =>{
+    console.log("Theme", theme);
+  })
 
   return (
     <div className='flex items-center p-3'>
@@ -48,8 +54,17 @@ const Header = () => {
         <input type='text' placeholder='Search Games' className='px-2 w-full bg-transparent outline-none' />
       </div>
       <div>
-        {toggle?<HiMoon className='text-[35px] h-10 w-10 bg-slate-200 text-black p-1 rounded-full cursor-pointer' onClick={()=>setToggle(!toggle)} />:
-        <HiSun className='text-[35px] h-10 w-10 bg-slate-200 text-black p-1 rounded-full cursor-pointer' onClick={()=>setToggle(!toggle)} />}
+        {theme == 'light' ? (
+          <HiMoon 
+            className='text-[35px] h-10 w-10 bg-slate-200 text-black p-1 rounded-full cursor-pointer' 
+            onClick={()=>setTheme("dark")} 
+          />
+          ) : (
+          <HiSun 
+            className='text-[35px] h-10 w-10 bg-slate-200 text-black p-1 rounded-full cursor-pointer' 
+            onClick={()=>setTheme("light")} 
+          />
+          )}
       </div>
       
     </div>
