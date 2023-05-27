@@ -57,12 +57,18 @@ const Header = () => {
         {theme == 'light' ? (
           <HiMoon 
             className='text-[35px] h-10 w-10 bg-slate-200 text-black p-1 rounded-full cursor-pointer' 
-            onClick={()=>setTheme("dark")} 
+            onClick={()=>{
+              setTheme("dark");
+              localStorage.setItem('theme', 'dark');
+            }} 
           />
           ) : (
           <HiSun 
             className='text-[35px] h-10 w-10 bg-slate-200 text-black p-1 rounded-full cursor-pointer' 
-            onClick={()=>setTheme("light")} 
+            onClick={()=>{
+              setTheme("light");
+              localStorage.setItem('theme', 'light');
+            }} 
           />
           )}
       </div>
